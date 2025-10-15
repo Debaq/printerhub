@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🖨️ TecMedHub - Print Lab Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="logo.png" alt="TecMedHub" class="logo" onerror="this.style.display='none'">
+                <h1 class="glitch" data-text="TECMEDHUB">TECMEDHUB</h1>
+            </div>
+            <div class="header-controls">
+                <div class="auth-status">
+                    <span id="user-status">MODO VISITANTE</span>
+                    <button id="login-btn" class="btn-login">LOGIN</button>
+                    <button id="logout-btn" class="btn-logout" style="display:none;">LOGOUT</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="🔍 BUSCAR IMPRESORA...">
+            </div>
+            <div class="filter-container">
+                <label class="filter-option">
+                    <input type="checkbox" id="filter-printing" checked>
+                    <span>🖨️ IMPRIMIENDO</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" id="filter-idle" checked>
+                    <span>✅ DISPONIBLES</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" id="filter-offline" checked>
+                    <span>📡 DESCONECTADAS</span>
+                </label>
+            </div>
+            <div class="view-controls">
+                <button id="compact-view" class="btn-view">📱 COMPACTO</button>
+                <button id="expanded-view" class="btn-view active">📋 EXPANDIDO</button>
+                <button id="upload-file-btn" class="btn-upload" style="display:none;">📤 SUBIR ARCHIVO</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal de Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>🔒 ACCESO RESTRINGIDO</h2>
+            <input type="password" id="pin-input" placeholder="INGRESA PIN" maxlength="6">
+            <button id="submit-pin" class="btn-action">ENTRAR</button>
+            <button id="close-modal" class="btn-cancel">CANCELAR</button>
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Modal de Selección de Archivos -->
+    <div id="file-modal" class="modal">
+        <div class="modal-content file-selector">
+            <h2>📁 SELECCIONA ARCHIVO</h2>
+            <div class="file-tabs">
+                <button class="file-tab active" data-tab="server">SERVIDOR</button>
+                <button class="file-tab" data-tab="printer">IMPRESORA</button>
+                <button class="file-tab" data-tab="upload">SUBIR NUEVO</button>
+            </div>
+            <div id="file-list-server" class="file-list-content active"></div>
+            <div id="file-list-printer" class="file-list-content"></div>
+            <div id="file-upload-area" class="file-list-content">
+                <div class="upload-zone" id="upload-zone">
+                    <p>📤 ARRASTRA ARCHIVO .GCODE AQUÍ</p>
+                    <p>O HAZ CLIC PARA SELECCIONAR</p>
+                    <input type="file" id="file-input" accept=".gcode" style="display:none;">
+                </div>
+                <div id="upload-progress" style="display:none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="upload-progress-bar"></div>
+                        <div class="progress-text" id="upload-progress-text">0%</div>
+                    </div>
+                </div>
+            </div>
+            <button id="close-file-modal" class="btn-cancel">CERRAR</button>
+        </div>
+    </div>
+
+    <!-- Modal de Notas -->
+    <div id="notes-modal" class="modal">
+        <div class="modal-content">
+            <h2>📝 NOTAS DE IMPRESORA</h2>
+            <textarea id="notes-input" rows="6" placeholder="Escribe notas sobre esta impresora..."></textarea>
+            <button id="save-notes" class="btn-action">GUARDAR</button>
+            <button id="close-notes-modal" class="btn-cancel">CANCELAR</button>
+        </div>
+    </div>
+
+    <!-- Modal de Logs -->
+    <div id="logs-modal" class="modal">
+        <div class="modal-content logs-viewer">
+            <h2>📜 LOGS DE CONSOLA</h2>
+            <div id="logs-content" class="logs-content"></div>
+            <button id="close-logs-modal" class="btn-cancel">CERRAR</button>
+        </div>
+    </div>
+
+    <main id="printer-grid">
+        <section class="printer-section" id="section-printing">
+            <h2 class="section-title">🖨️ IMPRIMIENDO</h2>
+            <div class="section-grid" data-section="printing"></div>
+        </section>
+
+        <section class="printer-section" id="section-idle">
+            <h2 class="section-title">✅ DISPONIBLES</h2>
+            <div class="section-grid" data-section="idle"></div>
+        </section>
+
+        <section class="printer-section" id="section-offline">
+            <h2 class="section-title">📡 DESCONECTADAS</h2>
+            <div class="section-grid" data-section="offline"></div>
+        </section>
+    </main>
+
+    <audio id="completion-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTcIGWi77eedTRAMUKfj8LZjHAY4ktfyzHksBSR3x/DdkEAKFF606+uoVRQKRp/g8r5sIQUrgs7y2Ik3CBlou+3nnU0QDFCn4/C2YxwGOJLX8sx5LAUkd8fw3ZBAC" type="audio/wav">
+    </audio>
+
+    <!-- Cargar módulos JS -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

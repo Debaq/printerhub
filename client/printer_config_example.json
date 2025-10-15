@@ -1,0 +1,99 @@
+{
+    "_comment": "TecMedHub - Configuración del Cliente de Impresora v4.0",
+    "_info": "Toda la personalización se hace aquí, nunca modificar el .py",
+    
+    "server_url": "https://tmeduca.org/printerhub/api.php",
+    "printer_token": "TECMED_PRINTER_001",
+    "printer_name": "🦄 Mi Impresora 3D",
+    "moonraker_url": "http://localhost:7125",
+    
+    "camera": {
+        "_comment": "Configuración de cámara(s)",
+        "enabled": true,
+        "urls": [
+            "http://localhost:8080/?action=snapshot"
+        ],
+        "resolution": "high",
+        "capture_interval": 30,
+        "timelapse_enabled": true,
+        "timelapse_interval": 60,
+        "_info": "Puedes agregar múltiples URLs para múltiples cámaras"
+    },
+    
+    "intervals": {
+        "_comment": "Intervalos de actualización en segundos",
+        "status_update": 5,
+        "command_check": 3,
+        "health_check": 60,
+        "reconnect_attempt": 10,
+        "_info": "Ajusta según tu ancho de banda y necesidades"
+    },
+    
+    "timeouts": {
+        "_comment": "Timeouts en segundos",
+        "moonraker": 5,
+        "server": 10,
+        "camera": 5,
+        "file_download": 60,
+        "_info": "Aumentar si tienes conexión lenta"
+    },
+    
+    "retries": {
+        "_comment": "Configuración de reintentos",
+        "max_attempts": 5,
+        "exponential_backoff": true,
+        "base_delay": 2,
+        "_info": "exponential_backoff: duplica el delay en cada intento"
+    },
+    
+    "file_management": {
+        "_comment": "Gestión automática de archivos",
+        "auto_cleanup": true,
+        "max_age_days": 30,
+        "verify_checksums": true,
+        "gcode_directory": "/home/pi/printer_data/gcodes",
+        "_info": "Los archivos más viejos que max_age_days serán eliminados"
+    },
+    
+    "logging": {
+        "_comment": "Configuración de logs",
+        "level": "INFO",
+        "max_size_mb": 10,
+        "backup_count": 5,
+        "verbose": false,
+        "_info": "level: DEBUG, INFO, WARNING, ERROR, CRITICAL"
+    },
+    
+    "security": {
+        "_comment": "Configuración de seguridad",
+        "validate_dangerous_commands": true,
+        "rate_limit_seconds": 1,
+        "allowed_gcode_patterns": ["G*", "M*", "T*"],
+        "_info": "rate_limit evita spam de comandos"
+    },
+    
+    "auto_update": {
+        "_comment": "Auto-actualización del cliente (futuro)",
+        "enabled": false,
+        "check_interval": 3600,
+        "update_url": "",
+        "_info": "Funcionalidad para futuras versiones"
+    },
+    
+    "printer_data": {
+        "_comment": "Datos específicos de esta impresora",
+        "tags": [
+            "Prusa",
+            "PLA",
+            "Lab Principal"
+        ],
+        "filament": {
+            "material": "PLA",
+            "color": "Negro",
+            "remaining": 100
+        },
+        "bed_status": "limpia",
+        "location": "Laboratorio Principal",
+        "_info": "Personaliza estos datos según tu impresora"
+    }
+}
