@@ -45,7 +45,7 @@ class API {
       // Si la sesión expiró, redirigir a login
       if (data.error && data.error.includes('sesión')) {
         Auth.logout();
-        window.location.href = '/login.html';
+        window.location.href = CONFIG.BASE_PATH + '/pages/login.html';
         throw new Error('Sesión expirada');
       }
       

@@ -165,7 +165,7 @@ class Auth {
     Utils.log('Logout successful');
     
     // Redirigir a login
-    window.location.href = '/login.html';
+    window.location.href = CONFIG.BASE_PATH + '/pages/login.html';
   }
 
   /**
@@ -201,7 +201,7 @@ class Auth {
   static async requireAuth() {
     if (!this.isLoggedIn()) {
       Utils.log('Not logged in, redirecting to login');
-      window.location.href = '/login.html';
+      window.location.href = CONFIG.BASE_PATH + '/pages/login.html';
       return false;
     }
     
@@ -209,7 +209,7 @@ class Auth {
     const isValid = await this.checkSession();
     if (!isValid) {
       Utils.log('Invalid session, redirecting to login');
-      window.location.href = '/login.html';
+      window.location.href = CONFIG.BASE_PATH + '/pages/login.html';
       return false;
     }
     
@@ -225,7 +225,7 @@ class Auth {
     
     if (!this.isAdmin()) {
       Utils.log('Not admin, redirecting to dashboard');
-      window.location.href = '/dashboard.html';
+      window.location.href = CONFIG.BASE_PATH + '/pages/dashboard.html';
       return false;
     }
     
@@ -237,9 +237,9 @@ class Auth {
    */
   static redirectByRole() {
     if (this.isAdmin()) {
-      window.location.href = '/admin.html';
+      window.location.href = CONFIG.BASE_PATH + '/pages/admin.html';
     } else {
-      window.location.href = '/dashboard.html';
+      window.location.href = CONFIG.BASE_PATH + '/pages/dashboard.html';
     }
   }
 
@@ -254,7 +254,7 @@ class Auth {
         if (!isValid) {
           Notifications.error('Tu sesión ha expirado. Por favor, inicia sesión nuevamente.');
           setTimeout(() => {
-            window.location.href = '/login.html';
+            window.location.href = CONFIG.BASE_PATH + '/pages/login.html';
           }, 2000);
         }
       }

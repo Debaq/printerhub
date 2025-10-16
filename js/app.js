@@ -214,7 +214,7 @@ class App {
         
         await Utils.sleep(1000);
         
-        window.location.href = '/login.html';
+        window.location.href = CONFIG.BASE_PATH + '/pages/login.html';
       } else {
         Notifications.error(result.error);
       }

@@ -1,0 +1,509 @@
+[
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "RotatingFileHandler",
+        "importPath": "logging.handlers",
+        "description": "logging.handlers",
+        "isExtraImport": true,
+        "detail": "logging.handlers",
+        "documentation": {}
+    },
+    {
+        "label": "urljoin",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "traceback",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "traceback",
+        "description": "traceback",
+        "detail": "traceback",
+        "documentation": {}
+    },
+    {
+        "label": "signal",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "signal",
+        "description": "signal",
+        "detail": "signal",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "Queue",
+        "importPath": "queue",
+        "description": "queue",
+        "isExtraImport": true,
+        "detail": "queue",
+        "documentation": {}
+    },
+    {
+        "label": "Empty",
+        "importPath": "queue",
+        "description": "queue",
+        "isExtraImport": true,
+        "detail": "queue",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "ColoredFormatter",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class ColoredFormatter(logging.Formatter):\n    \"\"\"Formatter con colores para terminal\"\"\"\n    COLORS = {\n        'DEBUG': '\\033[36m',    # Cyan\n        'INFO': '\\033[32m',     # Green\n        'WARNING': '\\033[33m',  # Yellow\n        'ERROR': '\\033[31m',    # Red\n        'CRITICAL': '\\033[35m', # Magenta\n        'RESET': '\\033[0m'\n    }",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigManager",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class ConfigManager:\n    \"\"\"Gestión de configuración con validación y valores por defecto\"\"\"\n    def __init__(self, config_path: str):\n        self.config_path = config_path\n        self.config = self.load_or_create()\n    def load_or_create(self) -> Dict:\n        \"\"\"Cargar configuración o crear una nueva\"\"\"\n        if not os.path.exists(self.config_path):\n            print(f\"📝 Creando archivo de configuración: {self.config_path}\")\n            self.save(DEFAULT_CONFIG)",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "StateManager",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class StateManager:\n    \"\"\"Gestión de estado persistente para sobrevivir a reinicios\"\"\"\n    def __init__(self, state_file: str):\n        self.state_file = state_file\n        self.state = self.load()\n        self.pending_updates = deque(maxlen=100)  # Buffer de actualizaciones fallidas\n    def load(self) -> Dict:\n        \"\"\"Cargar estado guardado\"\"\"\n        if os.path.exists(self.state_file):\n            try:",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "RobustHTTPClient",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class RobustHTTPClient:\n    \"\"\"Cliente HTTP con reintentos exponenciales y manejo de errores\"\"\"\n    def __init__(self, config: Dict, logger: logging.Logger):\n        self.config = config\n        self.logger = logger\n        self.session = requests.Session()\n        self.session.headers.update({\n            'User-Agent': f'TecMedHub-Client/{VERSION}'\n        })\n    def request(self, method: str, url: str, **kwargs) -> Optional[requests.Response]:",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "MoonrakerInterface",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class MoonrakerInterface:\n    \"\"\"Interface completa con Moonraker API\"\"\"\n    def __init__(self, config: Dict, logger: logging.Logger, http_client: RobustHTTPClient):\n        self.config = config\n        self.logger = logger\n        self.http = http_client\n        self.base_url = config['moonraker_url']\n        self.connected = False\n        self.last_error = None\n    def check_connection(self) -> bool:",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "CameraManager",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class CameraManager:\n    \"\"\"Gestión inteligente de múltiples cámaras\"\"\"\n    def __init__(self, config: Dict, logger: logging.Logger, http_client: RobustHTTPClient):\n        self.config = config\n        self.logger = logger\n        self.http = http_client\n        self.camera_config = config.get('camera', {})\n        self.last_capture = {}\n        self.timelapse_frames = []\n    def capture_snapshot(self, camera_index: int = 0) -> Optional[bytes]:",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "FileManager",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class FileManager:\n    \"\"\"Gestión de archivos G-code con limpieza automática\"\"\"\n    def __init__(self, config: Dict, logger: logging.Logger, http_client: RobustHTTPClient):\n        self.config = config\n        self.logger = logger\n        self.http = http_client\n        self.file_config = config.get('file_management', {})\n        self.gcode_dir = Path(self.file_config.get('gcode_directory', '/tmp/gcodes'))\n        self.gcode_dir.mkdir(parents=True, exist_ok=True)\n    def download_file(self, filename: str, source_url: str) -> Tuple[bool, Optional[str]]:",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "CommandProcessor",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class CommandProcessor:\n    \"\"\"Procesamiento robusto de comandos del servidor\"\"\"\n    def __init__(self, config: Dict, logger: logging.Logger, \n                 moonraker: MoonrakerInterface, file_manager: FileManager):\n        self.config = config\n        self.logger = logger\n        self.moonraker = moonraker\n        self.file_manager = file_manager\n        self.security_config = config.get('security', {})\n        self.last_command_time = 0",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "PrinterClient",
+        "kind": 6,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "class PrinterClient:\n    \"\"\"Cliente principal robusto y completo\"\"\"\n    def __init__(self, config_path: str):\n        # Configuración\n        self.config_manager = ConfigManager(config_path)\n        self.config = self.config_manager.config\n        # Logging\n        self.logger = setup_logging(self.config)\n        self.logger.info(\"=\"*70)\n        self.logger.info(\"🌈 TECMEDHUB - CLIENTE DE IMPRESORA 🌈\")",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logging",
+        "kind": 2,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "def setup_logging(config: Dict) -> logging.Logger:\n    \"\"\"Configurar sistema de logging\"\"\"\n    logger = logging.getLogger('TecMedHub')\n    log_config = config.get('logging', {})\n    level = getattr(logging, log_config.get('level', 'INFO'))\n    logger.setLevel(level)\n    # Handler para archivo con rotación\n    max_bytes = log_config.get('max_size_mb', 10) * 1024 * 1024\n    file_handler = RotatingFileHandler(\n        LOG_FILE,",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "def main():\n    \"\"\"Punto de entrada principal\"\"\"\n    print(\"\"\"\n╔═══════════════════════════════════════════════════════════════╗\n║                                                               ║\n║              🌈  TECMEDHUB PRINTER CLIENT  🌈                 ║\n║                     Version 4.0.0                             ║\n║                                                               ║\n║              Cliente Robusto para Klipper/Moonraker          ║\n║                                                               ║",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION",
+        "kind": 5,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "VERSION = \"4.0.0\"\nCONFIG_FILE = \"printer_config.json\"\nSTATE_FILE = \"printer_state.json\"\nLOG_FILE = \"printer_client.log\"\nDEFAULT_CONFIG = {\n    \"server_url\": \"https://tmeduca.org/printerhub/api.php\",\n    \"printer_token\": \"TECMED_PRINTER_001\",\n    \"printer_name\": \"🦄 Mi Impresora 3D\",\n    \"moonraker_url\": \"http://localhost:7125\",\n    # Configuración de cámara",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "CONFIG_FILE",
+        "kind": 5,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "CONFIG_FILE = \"printer_config.json\"\nSTATE_FILE = \"printer_state.json\"\nLOG_FILE = \"printer_client.log\"\nDEFAULT_CONFIG = {\n    \"server_url\": \"https://tmeduca.org/printerhub/api.php\",\n    \"printer_token\": \"TECMED_PRINTER_001\",\n    \"printer_name\": \"🦄 Mi Impresora 3D\",\n    \"moonraker_url\": \"http://localhost:7125\",\n    # Configuración de cámara\n    \"camera\": {",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "STATE_FILE",
+        "kind": 5,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "STATE_FILE = \"printer_state.json\"\nLOG_FILE = \"printer_client.log\"\nDEFAULT_CONFIG = {\n    \"server_url\": \"https://tmeduca.org/printerhub/api.php\",\n    \"printer_token\": \"TECMED_PRINTER_001\",\n    \"printer_name\": \"🦄 Mi Impresora 3D\",\n    \"moonraker_url\": \"http://localhost:7125\",\n    # Configuración de cámara\n    \"camera\": {\n        \"enabled\": True,",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_FILE",
+        "kind": 5,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "LOG_FILE = \"printer_client.log\"\nDEFAULT_CONFIG = {\n    \"server_url\": \"https://tmeduca.org/printerhub/api.php\",\n    \"printer_token\": \"TECMED_PRINTER_001\",\n    \"printer_name\": \"🦄 Mi Impresora 3D\",\n    \"moonraker_url\": \"http://localhost:7125\",\n    # Configuración de cámara\n    \"camera\": {\n        \"enabled\": True,\n        \"urls\": [\"http://localhost:8080/?action=snapshot\"],",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_CONFIG",
+        "kind": 5,
+        "importPath": "client.klipper_client",
+        "description": "client.klipper_client",
+        "peekOfCode": "DEFAULT_CONFIG = {\n    \"server_url\": \"https://tmeduca.org/printerhub/api.php\",\n    \"printer_token\": \"TECMED_PRINTER_001\",\n    \"printer_name\": \"🦄 Mi Impresora 3D\",\n    \"moonraker_url\": \"http://localhost:7125\",\n    # Configuración de cámara\n    \"camera\": {\n        \"enabled\": True,\n        \"urls\": [\"http://localhost:8080/?action=snapshot\"],\n        \"resolution\": \"high\",",
+        "detail": "client.klipper_client",
+        "documentation": {}
+    },
+    {
+        "label": "init_printer_state",
+        "kind": 2,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "def init_printer_state(token):\n    \"\"\"Inicializar estado de una impresora\"\"\"\n    if token not in printer_states:\n        printer_states[token] = {\n            'progress': 0,\n            'start_time': datetime.now(),\n            'filament': {\n                'material': random.choice(FILAMENT_MATERIALS),\n                'color': random.choice(FILAMENT_COLORS),\n                'remaining': random.randint(30, 100)",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "generate_fake_image",
+        "kind": 2,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "def generate_fake_image():\n    \"\"\"Genera una imagen base64 fake (cuadrado de colores con timestamp)\"\"\"\n    return \"data:image/svg+xml;base64,\" + base64.b64encode(\n        f'''<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n            <linearGradient id=\"grad{random.randint(0,1000)}\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n                <stop offset=\"0%\" style=\"stop-color:#{random.randint(0, 0xFFFFFF):06x};stop-opacity:1\" />\n                <stop offset=\"100%\" style=\"stop-color:#{random.randint(0, 0xFFFFFF):06x};stop-opacity:1\" />\n            </linearGradient>\n        </defs>",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "calculate_uptime",
+        "kind": 2,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "def calculate_uptime(start_time):\n    \"\"\"Calcular uptime desde inicio\"\"\"\n    delta = datetime.now() - start_time\n    hours = int(delta.total_seconds() // 3600)\n    minutes = int((delta.total_seconds() % 3600) // 60)\n    return f\"{hours}h {minutes}m\"\ndef simulate_printer(printer_config):\n    \"\"\"Simula datos de una impresora\"\"\"\n    token = printer_config['token']\n    status = printer_config['status']",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "simulate_printer",
+        "kind": 2,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "def simulate_printer(printer_config):\n    \"\"\"Simula datos de una impresora\"\"\"\n    token = printer_config['token']\n    status = printer_config['status']\n    # Inicializar estado si no existe\n    init_printer_state(token)\n    state = printer_states[token]\n    data = {\n        'action': 'update_printer',\n        'token': token,",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "send_update",
+        "kind": 2,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "def send_update(printer_data):\n    \"\"\"Envía actualización al servidor\"\"\"\n    try:\n        response = requests.post(\n            SERVER_URL,\n            json=printer_data,\n            timeout=5\n        )\n        if response.status_code == 200:\n            result = response.json()",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "check_commands",
+        "kind": 2,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "def check_commands(token, printer_name):\n    \"\"\"Verifica si hay comandos pendientes para esta impresora\"\"\"\n    try:\n        response = requests.get(\n            f\"{SERVER_URL}?action=get_commands&token={token}\",\n            timeout=5\n        )\n        if response.status_code == 200:\n            result = response.json()\n            if result.get('success'):",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "def main():\n    \"\"\"Loop principal del simulador\"\"\"\n    print(\"=\" * 60)\n    print(\"🌈 SIMULADOR DE IMPRESORAS TECMEDHUB 🌈\")\n    print(\"=\" * 60)\n    print(f\"Servidor: {SERVER_URL}\")\n    print(f\"Intervalo de actualización: {UPDATE_INTERVAL}s\")\n    print(f\"Impresoras simuladas: {len(PRINTERS)}\")\n    print(\"-\" * 60)\n    for printer in PRINTERS:",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "SERVER_URL",
+        "kind": 5,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "SERVER_URL = \"https://tmeduca.org/printerhub/api.php\"  # Cambiar por tu URL real\nUPDATE_INTERVAL = 5  # segundos\n# Configuración de las 6 impresoras de prueba\nPRINTERS = [\n    {\n        'token': 'TECMED_PRINTER_001',\n        'name': '🦄 UNICORNIO MAGICO',\n        'status': 'printing',\n        'tags': ['Prusa', 'PLA']\n    },",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "UPDATE_INTERVAL",
+        "kind": 5,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "UPDATE_INTERVAL = 5  # segundos\n# Configuración de las 6 impresoras de prueba\nPRINTERS = [\n    {\n        'token': 'TECMED_PRINTER_001',\n        'name': '🦄 UNICORNIO MAGICO',\n        'status': 'printing',\n        'tags': ['Prusa', 'PLA']\n    },\n    {",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "PRINTERS",
+        "kind": 5,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "PRINTERS = [\n    {\n        'token': 'TECMED_PRINTER_001',\n        'name': '🦄 UNICORNIO MAGICO',\n        'status': 'printing',\n        'tags': ['Prusa', 'PLA']\n    },\n    {\n        'token': 'TECMED_PRINTER_002',\n        'name': '🌈 ARCOIRIS EXPRESS',",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "SAMPLE_FILES",
+        "kind": 5,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "SAMPLE_FILES = [\n    'protesis_mano.gcode',\n    'soporte_tablet.gcode',\n    'calibration_cube.gcode',\n    'vase_mode.gcode',\n    'benchy.gcode',\n    'skull.gcode',\n    'respirador_valvula.gcode',\n    'porta_jeringas.gcode'\n]",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "FILAMENT_COLORS",
+        "kind": 5,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "FILAMENT_COLORS = ['Rojo', 'Azul', 'Verde', 'Amarillo', 'Negro', 'Blanco', 'Rosa', 'Morado', 'Naranja', 'Cyan']\n# Materiales de filamento\nFILAMENT_MATERIALS = ['PLA', 'ABS', 'PETG', 'TPU', 'Nylon', 'ASA']\n# Estados de cama\nBED_STATUSES = ['limpia', 'necesita limpieza', 'calibrar', 'perfecta']\n# Estado persistente para cada impresora\nprinter_states = {}\ndef init_printer_state(token):\n    \"\"\"Inicializar estado de una impresora\"\"\"\n    if token not in printer_states:",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "FILAMENT_MATERIALS",
+        "kind": 5,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "FILAMENT_MATERIALS = ['PLA', 'ABS', 'PETG', 'TPU', 'Nylon', 'ASA']\n# Estados de cama\nBED_STATUSES = ['limpia', 'necesita limpieza', 'calibrar', 'perfecta']\n# Estado persistente para cada impresora\nprinter_states = {}\ndef init_printer_state(token):\n    \"\"\"Inicializar estado de una impresora\"\"\"\n    if token not in printer_states:\n        printer_states[token] = {\n            'progress': 0,",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "BED_STATUSES",
+        "kind": 5,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "BED_STATUSES = ['limpia', 'necesita limpieza', 'calibrar', 'perfecta']\n# Estado persistente para cada impresora\nprinter_states = {}\ndef init_printer_state(token):\n    \"\"\"Inicializar estado de una impresora\"\"\"\n    if token not in printer_states:\n        printer_states[token] = {\n            'progress': 0,\n            'start_time': datetime.now(),\n            'filament': {",
+        "detail": "test.simulador",
+        "documentation": {}
+    },
+    {
+        "label": "printer_states",
+        "kind": 5,
+        "importPath": "test.simulador",
+        "description": "test.simulador",
+        "peekOfCode": "printer_states = {}\ndef init_printer_state(token):\n    \"\"\"Inicializar estado de una impresora\"\"\"\n    if token not in printer_states:\n        printer_states[token] = {\n            'progress': 0,\n            'start_time': datetime.now(),\n            'filament': {\n                'material': random.choice(FILAMENT_MATERIALS),\n                'color': random.choice(FILAMENT_COLORS),",
+        "detail": "test.simulador",
+        "documentation": {}
+    }
+]

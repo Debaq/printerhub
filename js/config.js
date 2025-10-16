@@ -3,10 +3,23 @@
  * Configuración global de la aplicación
  */
 
+
+// Detectar base path automáticamente
+const BASE_PATH = (() => {
+  const path = window.location.pathname;
+  // Si estamos en /printerhub/pages/login.html, el base es /printerhub/
+  // Si estamos en /pages/login.html, el base es /
+  const match = path.match(/^(.*?)\/(pages|api|js|css|uploads)/);
+  return match ? match[1] : '';
+})();
+
+
 const CONFIG = {
+  BASE_PATH: BASE_PATH,
+
   // URL base de la API
-  API_URL: '/api',
-  
+  API_URL: window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/') + '/api',
+
   // Intervalos de actualización (en milisegundos)
   REFRESH_INTERVAL: 5000, // 5 segundos
   REFRESH_INTERVAL_FAST: 2000, // 2 segundos (para impresiones activas)
