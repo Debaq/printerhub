@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PrinterHub - Sistema de gestión de impresoras 3D">
+  <title>Iniciar Sesión - PrinterHub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/login.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+</head>
+<body>
+  <!-- Background animado -->
+  <div class="auth-background"></div>
+
+  <!-- Página de login -->
+  <div class="auth-page">
+    <div class="auth-card">
+      <!-- Logo -->
+      <div class="auth-logo">
+        🖨️
+      </div>
+
+      <!-- Header -->
+      <div class="auth-header">
+        <h1 class="auth-title">Bienvenido a PrinterHub</h1>
+        <p class="auth-subtitle">Inicia sesión para gestionar tus impresoras</p>
+      </div>
+
+      <!-- Formulario de login -->
+      <form class="auth-form" id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="username">
+            <span class="form-label-icon">👤</span>
+            Usuario
+          </label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username"
+            class="form-control" 
+            placeholder="Ingresa tu usuario"
+            required
+            autocomplete="username"
+            autofocus
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">
+            <span class="form-label-icon">🔒</span>
+            Contraseña
+          </label>
+          <div class="form-input-with-icon">
+            <input 
+              type="password" 
+              id="password" 
+              name="password"
+              class="form-control" 
+              placeholder="Ingresa tu contraseña"
+              required
+              autocomplete="current-password"
+            >
+            <button type="button" class="toggle-password" tabindex="-1">
+              👁️
+            </button>
+          </div>
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="remember-me" name="remember-me">
+          <label for="remember-me">Recordarme</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          Iniciar Sesión
+        </button>
+      </form>
+
+      <!-- Links -->
+      <div class="auth-links">
+        <a href="register.html" class="auth-link">
+          ¿No tienes cuenta? <strong>Regístrate</strong>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="auth-footer">
+      <p>PrinterHub v1.0.0</p>
+      <p>Sistema de gestión de impresoras 3D</p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

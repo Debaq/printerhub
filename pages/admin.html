@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PrinterHub - Panel de Administración">
+  <title>Admin - PrinterHub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="../styles/admin.css">
+  <link rel="stylesheet" href="../styles/modal.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <!-- Brand -->
+        <a href="dashboard.html" class="navbar-brand">
+          <span class="navbar-brand-icon">🖨️</span>
+          <span class="navbar-brand-text">PrinterHub</span>
+        </a>
+
+        <!-- Links -->
+        <div class="navbar-links">
+          <a href="dashboard.html" class="navbar-link">
+            <span class="navbar-link-icon">🏠</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="files.html" class="navbar-link">
+            <span class="navbar-link-icon">📁</span>
+            <span>Archivos</span>
+          </a>
+          <a href="statistics.html" class="navbar-link">
+            <span class="navbar-link-icon">📊</span>
+            <span>Estadísticas</span>
+          </a>
+        </div>
+
+        <!-- User menu -->
+        <div class="navbar-menu">
+          <a href="admin.html" class="navbar-link active">
+            <span class="navbar-link-icon">⚙️</span>
+            <span class="hide-mobile">Admin</span>
+          </a>
+          
+          <div class="navbar-user">
+            <div class="navbar-avatar">?</div>
+            <span class="navbar-username">Admin</span>
+          </div>
+
+          <button class="btn btn-ghost btn-sm" data-action="logout">
+            Salir
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="admin-panel">
+    <div class="container">
+      <!-- Header -->
+      <div class="admin-header">
+        <h1 class="admin-title">Panel de Administración</h1>
+        <p class="admin-subtitle">Gestiona usuarios, impresoras y configuración del sistema</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="users">
+          <span class="admin-tab-icon">👥</span>
+          Usuarios
+        </button>
+        <button class="admin-tab" data-tab="printers">
+          <span class="admin-tab-icon">🖨️</span>
+          Impresoras
+        </button>
+        <button class="admin-tab" data-tab="groups">
+          <span class="admin-tab-icon">👨‍👩‍👧‍👦</span>
+          Grupos
+        </button>
+        <button class="admin-tab" data-tab="stats">
+          <span class="admin-tab-icon">📊</span>
+          Estadísticas
+        </button>
+        <button class="admin-tab" data-tab="logs">
+          <span class="admin-tab-icon">📋</span>
+          Logs
+        </button>
+      </div>
+
+      <!-- Tab Content: Usuarios -->
+      <div class="admin-tab-content active" data-tab-content="users">
+        <div class="admin-toolbar">
+          <div class="admin-search">
+            <span class="admin-search-icon">🔍</span>
+            <input 
+              type="text" 
+              placeholder="Buscar usuarios..."
+              id="users-search"
+            >
+          </div>
+          <div class="admin-actions">
+            <button class="btn btn-primary" id="create-user-btn">
+              <span>➕</span>
+              <span>Crear Usuario</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="users-list">
+          <div style="text-align: center; padding: var(--spacing-3xl); color: var(--text-tertiary);">
+            <div class="spinner"></div>
+            <p style="margin-top: var(--spacing-lg);">Cargando usuarios...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Impresoras -->
+      <div class="admin-tab-content" data-tab-content="printers">
+        <div class="admin-toolbar">
+          <div class="admin-search">
+            <span class="admin-search-icon">🔍</span>
+            <input 
+              type="text" 
+              placeholder="Buscar impresoras..."
+              id="printers-search"
+            >
+          </div>
+          <div class="admin-actions">
+            <button class="btn btn-primary" id="create-printer-btn">
+              <span>➕</span>
+              <span>Agregar Impresora</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="printers-admin-list">
+          <div style="text-align: center; padding: var(--spacing-3xl); color: var(--text-tertiary);">
+            <div class="spinner"></div>
+            <p style="margin-top: var(--spacing-lg);">Cargando impresoras...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Grupos -->
+      <div class="admin-tab-content" data-tab-content="groups">
+        <div class="admin-toolbar">
+          <div class="admin-search">
+            <span class="admin-search-icon">🔍</span>
+            <input 
+              type="text" 
+              placeholder="Buscar grupos..."
+              id="groups-search"
+            >
+          </div>
+          <div class="admin-actions">
+            <button class="btn btn-primary" id="create-group-btn">
+              <span>➕</span>
+              <span>Crear Grupo</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="groups-list">
+          <div style="text-align: center; padding: var(--spacing-3xl); color: var(--text-tertiary);">
+            <div class="spinner"></div>
+            <p style="margin-top: var(--spacing-lg);">Cargando grupos...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Estadísticas -->
+      <div class="admin-tab-content" data-tab-content="stats">
+        <div class="admin-toolbar">
+          <h2 class="section-title">Estadísticas del Sistema</h2>
+          <div class="admin-actions">
+            <button class="btn btn-ghost" id="refresh-stats">
+              <span>🔄</span>
+              <span>Actualizar</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="admin-stats" id="stats-cards">
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon">🖨️</div>
+            <div class="admin-stat-value">--</div>
+            <div class="admin-stat-label">Impresoras Totales</div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon">👥</div>
+            <div class="admin-stat-value">--</div>
+            <div class="admin-stat-label">Usuarios Activos</div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon">✅</div>
+            <div class="admin-stat-value">--</div>
+            <div class="admin-stat-label">Trabajos Completados</div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon">⏱️</div>
+            <div class="admin-stat-value">--</div>
+            <div class="admin-stat-label">Horas de Impresión</div>
+          </div>
+        </div>
+
+        <!-- Top Printers -->
+        <div class="card" style="margin-top: var(--spacing-2xl);">
+          <div class="card-header">
+            <h3 class="card-title">🏆 Top Impresoras</h3>
+          </div>
+          <div class="card-body">
+            <div id="top-printers">
+              <div style="text-align: center; padding: var(--spacing-xl); color: var(--text-tertiary);">
+                Cargando...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Logs -->
+      <div class="admin-tab-content" data-tab-content="logs">
+        <div class="admin-toolbar">
+          <h2 class="section-title">Log de Auditoría</h2>
+          <div class="admin-actions">
+            <select class="form-control" id="logs-filter">
+              <option value="all">Todas las acciones</option>
+              <option value="create">Crear</option>
+              <option value="update">Actualizar</option>
+              <option value="delete">Eliminar</option>
+              <option value="login">Login</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="logs-list">
+          <div style="text-align: center; padding: var(--spacing-3xl); color: var(--text-tertiary);">
+            <div class="spinner"></div>
+            <p style="margin-top: var(--spacing-lg);">Cargando logs...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/statistics.js"></script>
+  <script src="../js/admin.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,186 +1,388 @@
-// ============================================
-// AUTENTICACIÓN - Sistema de login/logout
-// ============================================
-
-import { 
-    PIN_CORRECT, 
-    AUTH_STORAGE_KEY, 
-    DOM_IDS,
-    UI_TEXTS 
-} from './config.js';
-
-// Estado de autenticación
-let isAuthenticated = false;
-
-// ============================================
-// INICIALIZACIÓN
-// ============================================
-
 /**
- * Inicializar sistema de autenticación
+ * PrinterHub - Authentication
+ * Sistema de autenticación y gestión de sesión
  */
-export function initAuth() {
-    checkSavedAuth();
-    setupAuthEventListeners();
-    updateAuthUI();
-}
 
-/**
- * Verificar si hay autenticación guardada
- */
-function checkSavedAuth() {
-    const savedAuth = localStorage.getItem(AUTH_STORAGE_KEY);
-    if (savedAuth === 'true') {
-        isAuthenticated = true;
+class Auth {
+  /**
+   * Obtener token de sesión
+   */
+  static getToken() {
+    return localStorage.getItem(CONFIG.SESSION_TOKEN_KEY);
+  }
+
+  /**
+   * Guardar token de sesión
+   */
+  static setToken(token) {
+    localStorage.setItem(CONFIG.SESSION_TOKEN_KEY, token);
+  }
+
+  /**
+   * Eliminar token de sesión
+   */
+  static clearToken() {
+    localStorage.removeItem(CONFIG.SESSION_TOKEN_KEY);
+  }
+
+  /**
+   * Obtener datos del usuario actual
+   */
+  static getUser() {
+    const userJson = localStorage.getItem(CONFIG.USER_KEY);
+    if (!userJson) return null;
+    
+    try {
+      return JSON.parse(userJson);
+    } catch (e) {
+      Utils.error('Error parsing user data:', e);
+      return null;
     }
-}
+  }
 
-/**
- * Configurar event listeners de autenticación
- */
-function setupAuthEventListeners() {
-    // Botón de login
-    document.getElementById(DOM_IDS.LOGIN_BTN).addEventListener('click', showLoginModal);
+  /**
+   * Guardar datos del usuario
+   */
+  static setUser(user) {
+    localStorage.setItem(CONFIG.USER_KEY, JSON.stringify(user));
+  }
+
+  /**
+   * Eliminar datos del usuario
+   */
+  static clearUser() {
+    localStorage.removeItem(CONFIG.USER_KEY);
+  }
+
+  /**
+   * Verificar si hay sesión activa
+   */
+  static isLoggedIn() {
+    return !!this.getToken() && !!this.getUser();
+  }
+
+  /**
+   * Verificar si el usuario es administrador
+   */
+  static isAdmin() {
+    const user = this.getUser();
+    return user && user.role === CONFIG.USER_ROLES.ADMIN;
+  }
+
+  /**
+   * Verificar si el usuario puede hacer impresiones privadas
+   */
+  static canPrintPrivate() {
+    const user = this.getUser();
+    return user && (user.role === CONFIG.USER_ROLES.ADMIN || user.can_print_private === 1);
+  }
+
+  /**
+   * Obtener nombre del usuario actual
+   */
+  static getUsername() {
+    const user = this.getUser();
+    return user ? user.username : null;
+  }
+
+  /**
+   * Obtener iniciales del usuario para avatar
+   */
+  static getUserInitials() {
+    const user = this.getUser();
+    if (!user || !user.username) return '?';
     
-    // Botón de logout
-    document.getElementById(DOM_IDS.LOGOUT_BTN).addEventListener('click', logout);
-    
-    // Submit PIN
-    document.getElementById(DOM_IDS.SUBMIT_PIN).addEventListener('click', login);
-    
-    // Cerrar modal
-    document.getElementById(DOM_IDS.CLOSE_MODAL).addEventListener('click', hideLoginModal);
-    
-    // Enter en el input de PIN
-    document.getElementById(DOM_IDS.PIN_INPUT).addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            login();
+    const parts = user.username.split(/[\s_-]/);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return user.username.substring(0, 2).toUpperCase();
+  }
+
+  /**
+   * Login
+   */
+  static async login(username, password, rememberMe = false) {
+    try {
+      const response = await API.login(username, password, rememberMe);
+      
+      if (response.success) {
+        // Guardar token y usuario
+        this.setToken(response.session.token);
+        this.setUser(response.user);
+        
+        // Guardar preferencia de "recordarme"
+        if (rememberMe) {
+          localStorage.setItem(CONFIG.REMEMBER_ME_KEY, 'true');
         }
-    });
-}
-
-// ============================================
-// FUNCIONES PÚBLICAS
-// ============================================
-
-/**
- * Verificar si el usuario está autenticado
- */
-export function isUserAuthenticated() {
-    return isAuthenticated;
-}
-
-/**
- * Mostrar modal de login
- */
-export function showLoginModal() {
-    const modal = document.getElementById(DOM_IDS.LOGIN_MODAL);
-    const pinInput = document.getElementById(DOM_IDS.PIN_INPUT);
-    const errorMsg = document.getElementById(DOM_IDS.LOGIN_ERROR);
-    
-    modal.classList.add('active');
-    pinInput.value = '';
-    pinInput.focus();
-    errorMsg.textContent = '';
-}
-
-/**
- * Ocultar modal de login
- */
-export function hideLoginModal() {
-    const modal = document.getElementById(DOM_IDS.LOGIN_MODAL);
-    const pinInput = document.getElementById(DOM_IDS.PIN_INPUT);
-    const errorMsg = document.getElementById(DOM_IDS.LOGIN_ERROR);
-    
-    modal.classList.remove('active');
-    pinInput.value = '';
-    errorMsg.textContent = '';
-}
-
-/**
- * Realizar login
- */
-export function login() {
-    const pinInput = document.getElementById(DOM_IDS.PIN_INPUT);
-    const errorMsg = document.getElementById(DOM_IDS.LOGIN_ERROR);
-    const pin = pinInput.value;
-    
-    if (pin === PIN_CORRECT) {
-        isAuthenticated = true;
-        localStorage.setItem(AUTH_STORAGE_KEY, 'true');
-        updateAuthUI();
-        hideLoginModal();
         
-        // Disparar evento personalizado para que otros módulos reaccionen
-        document.dispatchEvent(new CustomEvent('authChanged', { 
-            detail: { authenticated: true } 
-        }));
-        
+        Utils.log('Login successful:', response.user.username);
+        return { success: true, user: response.user };
+      } else {
+        return { success: false, error: response.message || 'Error al iniciar sesión' };
+      }
+    } catch (error) {
+      Utils.error('Login error:', error);
+      return { success: false, error: 'Error de conexión' };
+    }
+  }
+
+  /**
+   * Register
+   */
+  static async register(username, email, password) {
+    try {
+      const response = await API.register(username, email, password);
+      
+      if (response.success) {
+        Utils.log('Registration successful:', response.user.username);
+        return { success: true, user: response.user };
+      } else {
+        return { success: false, error: response.message || 'Error al registrarse' };
+      }
+    } catch (error) {
+      Utils.error('Registration error:', error);
+      return { success: false, error: 'Error de conexión' };
+    }
+  }
+
+  /**
+   * Logout
+   */
+  static async logout() {
+    try {
+      // Intentar logout en el servidor
+      await API.logout();
+    } catch (error) {
+      Utils.warn('Logout API error:', error);
+    }
+    
+    // Limpiar datos locales
+    this.clearToken();
+    this.clearUser();
+    localStorage.removeItem(CONFIG.REMEMBER_ME_KEY);
+    
+    Utils.log('Logout successful');
+    
+    // Redirigir a login
+    window.location.href = '/login.html';
+  }
+
+  /**
+   * Verificar sesión válida
+   */
+  static async checkSession() {
+    if (!this.isLoggedIn()) {
+      return false;
+    }
+    
+    try {
+      const response = await API.checkSession();
+      
+      if (response.success) {
+        // Actualizar datos del usuario por si cambiaron
+        this.setUser(response.user);
         return true;
-    } else {
-        errorMsg.textContent = '❌ PIN INCORRECTO';
-        pinInput.value = '';
-        pinInput.focus();
+      } else {
+        // Sesión inválida
+        this.clearToken();
+        this.clearUser();
         return false;
+      }
+    } catch (error) {
+      Utils.error('Check session error:', error);
+      return false;
     }
-}
+  }
 
-/**
- * Realizar logout
- */
-export function logout() {
-    isAuthenticated = false;
-    localStorage.removeItem(AUTH_STORAGE_KEY);
-    updateAuthUI();
+  /**
+   * Proteger página (requiere autenticación)
+   */
+  static async requireAuth() {
+    if (!this.isLoggedIn()) {
+      Utils.log('Not logged in, redirecting to login');
+      window.location.href = '/login.html';
+      return false;
+    }
     
-    // Disparar evento personalizado
-    document.dispatchEvent(new CustomEvent('authChanged', { 
-        detail: { authenticated: false } 
-    }));
-}
-
-/**
- * Actualizar UI según estado de autenticación
- */
-export function updateAuthUI() {
-    const userStatus = document.getElementById(DOM_IDS.USER_STATUS);
-    const loginBtn = document.getElementById(DOM_IDS.LOGIN_BTN);
-    const logoutBtn = document.getElementById(DOM_IDS.LOGOUT_BTN);
-    const uploadBtn = document.getElementById(DOM_IDS.UPLOAD_FILE_BTN);
+    // Verificar sesión en el servidor
+    const isValid = await this.checkSession();
+    if (!isValid) {
+      Utils.log('Invalid session, redirecting to login');
+      window.location.href = '/login.html';
+      return false;
+    }
     
-    if (isAuthenticated) {
-        userStatus.textContent = UI_TEXTS.ADMIN_MODE;
-        loginBtn.style.display = 'none';
-        logoutBtn.style.display = 'inline-block';
-        uploadBtn.style.display = 'inline-block';
-    } else {
-        userStatus.textContent = UI_TEXTS.VISITOR_MODE;
-        loginBtn.style.display = 'inline-block';
-        logoutBtn.style.display = 'none';
-        uploadBtn.style.display = 'none';
-    }
-}
-
-/**
- * Requerir autenticación (helper para otros módulos)
- */
-export function requireAuth() {
-    if (!isAuthenticated) {
-        alert(UI_TEXTS.LOGIN_REQUIRED);
-        showLoginModal();
-        return false;
-    }
     return true;
+  }
+
+  /**
+   * Proteger página de admin (requiere rol de administrador)
+   */
+  static async requireAdmin() {
+    const isAuthenticated = await this.requireAuth();
+    if (!isAuthenticated) return false;
+    
+    if (!this.isAdmin()) {
+      Utils.log('Not admin, redirecting to dashboard');
+      window.location.href = '/dashboard.html';
+      return false;
+    }
+    
+    return true;
+  }
+
+  /**
+   * Redirigir según rol
+   */
+  static redirectByRole() {
+    if (this.isAdmin()) {
+      window.location.href = '/admin.html';
+    } else {
+      window.location.href = '/dashboard.html';
+    }
+  }
+
+  /**
+   * Inicializar verificación periódica de sesión
+   */
+  static initSessionCheck() {
+    // Verificar sesión cada minuto
+    setInterval(async () => {
+      if (this.isLoggedIn()) {
+        const isValid = await this.checkSession();
+        if (!isValid) {
+          Notifications.error('Tu sesión ha expirado. Por favor, inicia sesión nuevamente.');
+          setTimeout(() => {
+            window.location.href = '/login.html';
+          }, 2000);
+        }
+      }
+    }, CONFIG.SESSION_CHECK_INTERVAL);
+  }
+
+  /**
+   * Inicializar UI de autenticación (mostrar usuario en navbar)
+   */
+  static initAuthUI() {
+    const user = this.getUser();
+    if (!user) return;
+    
+    // Actualizar avatar
+    const avatarEl = document.querySelector('.navbar-avatar');
+    if (avatarEl) {
+      avatarEl.textContent = this.getUserInitials();
+    }
+    
+    // Actualizar username
+    const usernameEl = document.querySelector('.navbar-username');
+    if (usernameEl) {
+      usernameEl.textContent = user.username;
+    }
+    
+    // Mostrar/ocultar botón de admin
+    if (this.isAdmin()) {
+      const adminBtns = document.querySelectorAll('.admin-only');
+      adminBtns.forEach(btn => btn.classList.remove('hidden'));
+    }
+    
+    // Configurar botón de logout
+    const logoutBtns = document.querySelectorAll('[data-action="logout"]');
+    logoutBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.logout();
+      });
+    });
+  }
+
+  /**
+   * Validar formulario de login
+   */
+  static validateLoginForm(username, password) {
+    const errors = [];
+    
+    if (!username || username.trim().length === 0) {
+      errors.push('El nombre de usuario es requerido');
+    }
+    
+    if (!password || password.length === 0) {
+      errors.push('La contraseña es requerida');
+    }
+    
+    return errors;
+  }
+
+  /**
+   * Validar formulario de registro
+   */
+  static validateRegisterForm(username, email, password, confirmPassword) {
+    const errors = [];
+    
+    // Username
+    if (!username || username.trim().length === 0) {
+      errors.push('El nombre de usuario es requerido');
+    } else if (!Utils.isValidUsername(username)) {
+      errors.push(`El nombre de usuario debe tener al menos ${CONFIG.MIN_USERNAME_LENGTH} caracteres y solo puede contener letras, números, guiones y guiones bajos`);
+    }
+    
+    // Email
+    if (!email || email.trim().length === 0) {
+      errors.push('El email es requerido');
+    } else if (!Utils.isValidEmail(email)) {
+      errors.push('El email no es válido');
+    }
+    
+    // Password
+    if (!password || password.length === 0) {
+      errors.push('La contraseña es requerida');
+    } else if (!Utils.isValidPassword(password)) {
+      errors.push(`La contraseña debe tener al menos ${CONFIG.MIN_PASSWORD_LENGTH} caracteres`);
+    }
+    
+    // Confirm password
+    if (password !== confirmPassword) {
+      errors.push('Las contraseñas no coinciden');
+    }
+    
+    return errors;
+  }
+
+  /**
+   * Obtener información del usuario formateada para mostrar
+   */
+  static getUserInfo() {
+    const user = this.getUser();
+    if (!user) return null;
+    
+    return {
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      roleText: user.role === CONFIG.USER_ROLES.ADMIN ? 'Administrador' : 'Usuario',
+      canPrintPrivate: user.can_print_private === 1,
+      initials: this.getUserInitials()
+    };
+  }
 }
 
-// Export default
-export default {
-    initAuth,
-    isUserAuthenticated,
-    showLoginModal,
-    hideLoginModal,
-    login,
-    logout,
-    updateAuthUI,
-    requireAuth
-};
+// Inicializar verificación de sesión cuando se carga la página
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    if (Auth.isLoggedIn()) {
+      Auth.initSessionCheck();
+    }
+  });
+} else {
+  if (Auth.isLoggedIn()) {
+    Auth.initSessionCheck();
+  }
+}
+
+// Debug
+if (CONFIG.DEBUG) {
+  console.log('🔧 Auth loaded');
+  if (Auth.isLoggedIn()) {
+    console.log('👤 Current user:', Auth.getUser());
+  }
+}

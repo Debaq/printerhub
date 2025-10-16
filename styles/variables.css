@@ -1,0 +1,187 @@
+/**
+ * PrinterHub - Variables CSS
+ * Paleta de colores vibrante y moderna
+ */
+
+:root {
+  /* ========== COLORES PRINCIPALES ========== */
+  --primary: #9333ea;           /* Púrpura vibrante */
+  --primary-light: #a855f7;     /* Púrpura claro */
+  --primary-dark: #7e22ce;      /* Púrpura oscuro */
+  --primary-glow: rgba(147, 51, 234, 0.3);
+  
+  --secondary: #ec4899;         /* Rosa magenta */
+  --secondary-light: #f472b6;   /* Rosa claro */
+  --secondary-dark: #db2777;    /* Rosa oscuro */
+  --secondary-glow: rgba(236, 72, 153, 0.3);
+  
+  --accent: #06b6d4;            /* Cyan eléctrico */
+  --accent-light: #22d3ee;      /* Cyan claro */
+  --accent-dark: #0891b2;       /* Cyan oscuro */
+  --accent-glow: rgba(6, 182, 212, 0.3);
+  
+  /* ========== COLORES DE ESTADO ========== */
+  --success: #10b981;           /* Verde éxito */
+  --success-light: #34d399;
+  --success-dark: #059669;
+  --success-bg: rgba(16, 185, 129, 0.1);
+  
+  --warning: #f59e0b;           /* Amarillo/naranja advertencia */
+  --warning-light: #fbbf24;
+  --warning-dark: #d97706;
+  --warning-bg: rgba(245, 158, 11, 0.1);
+  
+  --danger: #ef4444;            /* Rojo peligro */
+  --danger-light: #f87171;
+  --danger-dark: #dc2626;
+  --danger-bg: rgba(239, 68, 68, 0.1);
+  
+  --info: #3b82f6;              /* Azul info */
+  --info-light: #60a5fa;
+  --info-dark: #2563eb;
+  --info-bg: rgba(59, 130, 246, 0.1);
+  
+  /* ========== COLORES NEUTROS ========== */
+  --dark: #0f172a;              /* Fondo oscuro principal */
+  --dark-light: #1e293b;        /* Fondo oscuro secundario */
+  --dark-lighter: #334155;      /* Fondo oscuro terciario */
+  
+  --gray-900: #0f172a;
+  --gray-800: #1e293b;
+  --gray-700: #334155;
+  --gray-600: #475569;
+  --gray-500: #64748b;
+  --gray-400: #94a3b8;
+  --gray-300: #cbd5e1;
+  --gray-200: #e2e8f0;
+  --gray-100: #f1f5f9;
+  
+  --white: #ffffff;
+  --black: #000000;
+  
+  /* ========== BACKGROUNDS ========== */
+  --bg-primary: #0f172a;        /* Fondo principal oscuro */
+  --bg-secondary: #1e293b;      /* Fondo secundario */
+  --bg-tertiary: #334155;       /* Fondo terciario */
+  --bg-light: #f1f5f9;          /* Fondo claro */
+  --bg-card: #1e293b;           /* Fondo de tarjetas */
+  --bg-hover: #334155;          /* Hover en elementos */
+  
+  /* ========== GRADIENTES VIBRANTES ========== */
+  --gradient-primary: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+  --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+  --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  --gradient-rainbow: linear-gradient(135deg, #9333ea 0%, #ec4899 25%, #f97316 50%, #06b6d4 75%, #3b82f6 100%);
+  
+  /* Gradiente de fondo para body */
+  --gradient-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e1b3d 100%);
+  
+  /* ========== TEXTO ========== */
+  --text-primary: #f1f5f9;      /* Texto principal claro */
+  --text-secondary: #cbd5e1;    /* Texto secundario */
+  --text-tertiary: #94a3b8;     /* Texto terciario/hint */
+  --text-muted: #64748b;        /* Texto apagado */
+  --text-dark: #0f172a;         /* Texto oscuro (para fondos claros) */
+  
+  /* ========== BORDES ========== */
+  --border-color: #334155;
+  --border-light: #475569;
+  --border-dark: #1e293b;
+  
+  /* ========== SOMBRAS ========== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* Sombras de colores (glow effect) */
+  --shadow-primary: 0 10px 30px -10px var(--primary-glow);
+  --shadow-secondary: 0 10px 30px -10px var(--secondary-glow);
+  --shadow-accent: 0 10px 30px -10px var(--accent-glow);
+  
+  /* ========== ESPACIADO ========== */
+  --spacing-xs: 0.25rem;    /* 4px */
+  --spacing-sm: 0.5rem;     /* 8px */
+  --spacing-md: 1rem;       /* 16px */
+  --spacing-lg: 1.5rem;     /* 24px */
+  --spacing-xl: 2rem;       /* 32px */
+  --spacing-2xl: 3rem;      /* 48px */
+  --spacing-3xl: 4rem;      /* 64px */
+  
+  /* ========== BORDER RADIUS ========== */
+  --radius-sm: 0.25rem;     /* 4px */
+  --radius-md: 0.5rem;      /* 8px */
+  --radius-lg: 0.75rem;     /* 12px */
+  --radius-xl: 1rem;        /* 16px */
+  --radius-2xl: 1.5rem;     /* 24px */
+  --radius-full: 9999px;    /* Circular */
+  
+  /* ========== TRANSICIONES ========== */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  
+  /* ========== TIPOGRAFÍA ========== */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* ========== Z-INDEX ========== */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+  
+  /* ========== OTROS ========== */
+  --opacity-disabled: 0.5;
+  --opacity-hover: 0.8;
+  
+  /* Blur para glassmorphism */
+  --blur-sm: blur(8px);
+  --blur-md: blur(16px);
+  --blur-lg: blur(24px);
+}
+
+/* ========== MODO CLARO (opcional para futuro) ========== */
+[data-theme="light"] {
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-hover: #f1f5f9;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-tertiary: #64748b;
+  --text-muted: #94a3b8;
+  
+  --border-color: #e2e8f0;
+  --border-light: #cbd5e1;
+  --border-dark: #94a3b8;
+  
+  --gradient-bg: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #ddd6fe 100%);
+}

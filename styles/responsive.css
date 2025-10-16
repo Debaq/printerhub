@@ -1,0 +1,605 @@
+/**
+ * PrinterHub - Responsive Styles
+ * Media queries y ajustes responsive globales
+ */
+
+/* ========== BREAKPOINTS ========== */
+/* 
+  - Mobile: < 480px
+  - Tablet: 481px - 768px
+  - Desktop: 769px - 1024px
+  - Large: > 1024px
+*/
+
+/* ========== DESKTOP LARGE (> 1440px) ========== */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  .printers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}
+
+/* ========== DESKTOP (1025px - 1440px) ========== */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .printers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========== TABLET LANDSCAPE (769px - 1024px) ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .navbar-content {
+    gap: var(--spacing-md);
+  }
+  
+  .navbar-links {
+    gap: var(--spacing-sm);
+  }
+  
+  .navbar-link {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  .printers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========== TABLET PORTRAIT (481px - 768px) ========== */
+@media (min-width: 481px) and (max-width: 768px) {
+  :root {
+    font-size: 15px;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  /* Navbar */
+  .navbar {
+    padding: var(--spacing-sm) 0;
+  }
+  
+  .navbar-brand {
+    font-size: var(--font-size-lg);
+  }
+  
+  .navbar-menu {
+    gap: var(--spacing-sm);
+  }
+  
+  .navbar-links {
+    display: none; /* Se muestra en menú hamburguesa */
+  }
+  
+  /* Headers */
+  h1 { font-size: var(--font-size-3xl); }
+  h2 { font-size: var(--font-size-2xl); }
+  h3 { font-size: var(--font-size-xl); }
+  
+  /* Grids */
+  .printers-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Cards */
+  .card-body,
+  .card-header,
+  .card-footer {
+    padding: var(--spacing-md);
+  }
+  
+  /* Modals */
+  .modal {
+    max-width: 90vw;
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: var(--spacing-md);
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .btn-lg {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+  
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+  
+  /* Toolbar */
+  .dashboard-toolbar {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .dashboard-search {
+    min-width: 100%;
+  }
+  
+  .dashboard-filters {
+    width: 100%;
+  }
+}
+
+/* ========== MOBILE (< 480px) ========== */
+@media (max-width: 480px) {
+  :root {
+    font-size: 14px;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 0.75rem;
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.5rem;
+    --spacing-2xl: 2rem;
+    --spacing-3xl: 2.5rem;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  /* ========== NAVBAR ========== */
+  .navbar {
+    padding: var(--spacing-xs) 0;
+  }
+  
+  .navbar-content {
+    gap: var(--spacing-sm);
+  }
+  
+  .navbar-brand {
+    font-size: var(--font-size-base);
+    gap: var(--spacing-sm);
+  }
+  
+  .navbar-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-size-xs);
+  }
+  
+  .navbar-username {
+    display: none;
+  }
+  
+  /* ========== TYPOGRAPHY ========== */
+  h1 { font-size: var(--font-size-2xl); }
+  h2 { font-size: var(--font-size-xl); }
+  h3 { font-size: var(--font-size-lg); }
+  h4 { font-size: var(--font-size-base); }
+  h5 { font-size: var(--font-size-sm); }
+  h6 { font-size: var(--font-size-xs); }
+  
+  /* ========== DASHBOARD ========== */
+  .dashboard-header {
+    padding: var(--spacing-md) 0;
+  }
+  
+  .dashboard-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .dashboard-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  /* ========== CARDS ========== */
+  .card {
+    border-radius: var(--radius-lg);
+  }
+  
+  .card-header,
+  .card-body,
+  .card-footer {
+    padding: var(--spacing-md);
+  }
+  
+  .card-title {
+    font-size: var(--font-size-base);
+  }
+  
+  /* ========== PRINTER CARDS ========== */
+  .printer-card {
+    border-radius: var(--radius-lg);
+  }
+  
+  .printer-image {
+    height: 160px;
+  }
+  
+  .printer-content {
+    padding: var(--spacing-md);
+  }
+  
+  .printer-name {
+    font-size: var(--font-size-base);
+  }
+  
+  .printer-temps {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .printer-temp {
+    padding: var(--spacing-sm);
+  }
+  
+  .printer-temp-value {
+    font-size: var(--font-size-lg);
+  }
+  
+  .printer-stats {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .printer-stat {
+    padding: var(--spacing-xs);
+    text-align: left;
+  }
+  
+  .printer-footer {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .printer-control-btn {
+    width: 100%;
+  }
+  
+  /* ========== STATS ========== */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .stat-card {
+    padding: var(--spacing-md);
+  }
+  
+  .stat-card-icon {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-xl);
+  }
+  
+  .stat-card-value {
+    font-size: var(--font-size-3xl);
+  }
+  
+  /* ========== MODALS ========== */
+  .modal-backdrop {
+    padding: 0;
+  }
+  
+  .modal {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    animation: slideUpMobile 0.3s ease-out;
+  }
+  
+  .modal-header {
+    padding: var(--spacing-md);
+  }
+  
+  .modal-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .modal-body {
+    padding: var(--spacing-md);
+  }
+  
+  .modal-footer {
+    padding: var(--spacing-md);
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .modal-footer .btn {
+    width: 100%;
+  }
+  
+  .modal-tabs {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .modal-tab {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+  
+  .modal-info-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .modal-controls {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+  
+  .modal-control-btn {
+    padding: var(--spacing-md);
+  }
+  
+  .modal-section {
+    padding: var(--spacing-md);
+  }
+  
+  /* ========== BUTTONS ========== */
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  .btn-sm {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+  
+  .btn-lg {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+  }
+  
+  /* ========== FORMS ========== */
+  .form-control {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  .form-label {
+    font-size: var(--font-size-xs);
+  }
+  
+  /* ========== TABLES ========== */
+  .table-container {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+  }
+  
+  .table {
+    min-width: 600px;
+    font-size: var(--font-size-xs);
+  }
+  
+  .table th,
+  .table td {
+    padding: var(--spacing-sm);
+  }
+  
+  /* ========== TOAST ========== */
+  .toast-container {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    left: var(--spacing-sm);
+    max-width: 100%;
+  }
+  
+  .toast {
+    padding: var(--spacing-sm);
+  }
+  
+  .toast-title {
+    font-size: var(--font-size-sm);
+  }
+  
+  .toast-message {
+    font-size: var(--font-size-xs);
+  }
+  
+  /* ========== FAB ========== */
+  .fab {
+    width: 56px;
+    height: 56px;
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    font-size: var(--font-size-xl);
+  }
+  
+  /* ========== AUTH PAGES ========== */
+  .auth-page {
+    padding: var(--spacing-md);
+  }
+  
+  .auth-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .auth-logo {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  
+  .auth-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .auth-form .form-control {
+    padding: var(--spacing-md);
+  }
+  
+  /* ========== ADMIN PANEL ========== */
+  .admin-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .admin-tabs {
+    gap: 0;
+    margin: 0 calc(var(--spacing-sm) * -1) var(--spacing-lg);
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .admin-tab {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+  
+  .admin-tab-icon {
+    font-size: var(--font-size-base);
+  }
+  
+  .admin-table-container {
+    overflow-x: auto;
+  }
+  
+  .admin-table {
+    min-width: 700px;
+  }
+  
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-form {
+    padding: var(--spacing-md);
+  }
+  
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .permissions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* ========== FILTERS ========== */
+  .filter-chips {
+    width: 100%;
+  }
+  
+  .filter-chip {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  /* ========== BADGES ========== */
+  .badge {
+    padding: 2px var(--spacing-xs);
+    font-size: 0.65rem;
+  }
+  
+  /* ========== UTILITIES ========== */
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .show-mobile {
+    display: block !important;
+  }
+}
+
+/* ========== LANDSCAPE MOBILE ========== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .modal {
+    max-height: 95vh;
+  }
+  
+  .modal-body {
+    max-height: 60vh;
+  }
+  
+  .auth-page {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+  .navbar,
+  .fab,
+  .quick-actions,
+  .toast-container,
+  .modal-backdrop {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+  }
+  
+  .card,
+  .printer-card,
+  .admin-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* ========== PREFERS REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== TOUCH DEVICES ========== */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover,
+  .card:hover,
+  .printer-card:hover {
+    transform: none;
+  }
+  
+  .btn:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ========== HIGH DPI SCREENS ========== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

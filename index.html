@@ -1,135 +1,280 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🖨️ TecMedHub - Print Lab Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PrinterHub - Sistema de gestión de impresoras 3D en tiempo real">
+  <title>PrinterHub - Gestión de Impresoras 3D</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles/variables.css">
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+  
+  <style>
+    /* Estilos específicos del landing page */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(147, 51, 234, 0.3) 0%, transparent 70%);
+      top: -250px;
+      right: -250px;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%);
+      bottom: -200px;
+      left: -200px;
+      animation: float 15s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(50px, 50px) rotate(180deg); }
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      padding: var(--spacing-2xl);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      font-size: 6rem;
+      margin-bottom: var(--spacing-xl);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: var(--font-weight-bold);
+      background: var(--gradient-rainbow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--spacing-lg);
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-2xl);
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: var(--spacing-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .features {
+      padding: var(--spacing-3xl) var(--spacing-xl);
+      background: var(--bg-primary);
+    }
+
+    .features-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-2xl);
+      margin-top: var(--spacing-3xl);
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: var(--spacing-2xl);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      transition: all var(--transition-base);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--primary);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .feature-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: var(--font-weight-bold);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer {
+      padding: var(--spacing-2xl) var(--spacing-xl);
+      background: var(--bg-tertiary);
+      text-align: center;
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="scanlines"></div>
-
-    <header>
-        <div class="header-top">
-            <div class="logo-container">
-                <img src="logo.png" alt="TecMedHub" class="logo" onerror="this.style.display='none'">
-                <h1 class="glitch" data-text="TECMEDHUB">TECMEDHUB</h1>
-            </div>
-            <div class="header-controls">
-                <div class="auth-status">
-                    <span id="user-status">MODO VISITANTE</span>
-                    <button id="login-btn" class="btn-login">LOGIN</button>
-                    <button id="logout-btn" class="btn-logout" style="display:none;">LOGOUT</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="toolbar">
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="🔍 BUSCAR IMPRESORA...">
-            </div>
-            <div class="filter-container">
-                <label class="filter-option">
-                    <input type="checkbox" id="filter-printing" checked>
-                    <span>🖨️ IMPRIMIENDO</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" id="filter-idle" checked>
-                    <span>✅ DISPONIBLES</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" id="filter-offline" checked>
-                    <span>📡 DESCONECTADAS</span>
-                </label>
-            </div>
-            <div class="view-controls">
-                <button id="compact-view" class="btn-view">📱 COMPACTO</button>
-                <button id="expanded-view" class="btn-view active">📋 EXPANDIDO</button>
-                <button id="upload-file-btn" class="btn-upload" style="display:none;">📤 SUBIR ARCHIVO</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Modal de Login -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <h2>🔒 ACCESO RESTRINGIDO</h2>
-            <input type="password" id="pin-input" placeholder="INGRESA PIN" maxlength="6">
-            <button id="submit-pin" class="btn-action">ENTRAR</button>
-            <button id="close-modal" class="btn-cancel">CANCELAR</button>
-            <p id="login-error" class="error-msg"></p>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-logo">🖨️</div>
+      <h1 class="hero-title">PrinterHub</h1>
+      <p class="hero-subtitle">
+        Sistema inteligente de gestión y monitoreo de impresoras 3D en tiempo real
+      </p>
+      <div class="hero-buttons">
+        <a href="pages/login.html" class="btn btn-primary btn-lg">
+          Iniciar Sesión
+        </a>
+        <a href="pages/register.html" class="btn btn-outline btn-lg">
+          Crear Cuenta
+        </a>
+      </div>
     </div>
+  </section>
 
-    <!-- Modal de Selección de Archivos -->
-    <div id="file-modal" class="modal">
-        <div class="modal-content file-selector">
-            <h2>📁 SELECCIONA ARCHIVO</h2>
-            <div class="file-tabs">
-                <button class="file-tab active" data-tab="server">SERVIDOR</button>
-                <button class="file-tab" data-tab="printer">IMPRESORA</button>
-                <button class="file-tab" data-tab="upload">SUBIR NUEVO</button>
-            </div>
-            <div id="file-list-server" class="file-list-content active"></div>
-            <div id="file-list-printer" class="file-list-content"></div>
-            <div id="file-upload-area" class="file-list-content">
-                <div class="upload-zone" id="upload-zone">
-                    <p>📤 ARRASTRA ARCHIVO .GCODE AQUÍ</p>
-                    <p>O HAZ CLIC PARA SELECCIONAR</p>
-                    <input type="file" id="file-input" accept=".gcode" style="display:none;">
-                </div>
-                <div id="upload-progress" style="display:none;">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="upload-progress-bar"></div>
-                        <div class="progress-text" id="upload-progress-text">0%</div>
-                    </div>
-                </div>
-            </div>
-            <button id="close-file-modal" class="btn-cancel">CERRAR</button>
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Características Principales</h2>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3 class="feature-title">Monitoreo en Tiempo Real</h3>
+          <p class="feature-description">
+            Visualiza el estado de todas tus impresoras con actualización automática cada 5 segundos
+          </p>
         </div>
-    </div>
 
-    <!-- Modal de Notas -->
-    <div id="notes-modal" class="modal">
-        <div class="modal-content">
-            <h2>📝 NOTAS DE IMPRESORA</h2>
-            <textarea id="notes-input" rows="6" placeholder="Escribe notas sobre esta impresora..."></textarea>
-            <button id="save-notes" class="btn-action">GUARDAR</button>
-            <button id="close-notes-modal" class="btn-cancel">CANCELAR</button>
+        <div class="feature-card">
+          <div class="feature-icon">🎮</div>
+          <h3 class="feature-title">Control Total</h3>
+          <p class="feature-description">
+            Controla temperatura, velocidad, envía comandos gcode y gestiona tus impresiones
+          </p>
         </div>
-    </div>
 
-    <!-- Modal de Logs -->
-    <div id="logs-modal" class="modal">
-        <div class="modal-content logs-viewer">
-            <h2>📜 LOGS DE CONSOLA</h2>
-            <div id="logs-content" class="logs-content"></div>
-            <button id="close-logs-modal" class="btn-cancel">CERRAR</button>
+        <div class="feature-card">
+          <div class="feature-icon">📁</div>
+          <h3 class="feature-title">Gestión de Archivos</h3>
+          <p class="feature-description">
+            Sube, organiza y envía archivos gcode a cualquier impresora de forma simple
+          </p>
         </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">Estadísticas Detalladas</h3>
+          <p class="feature-description">
+            Reportes completos de uso, tiempo de impresión y tasa de éxito
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3 class="feature-title">Multi-Usuario</h3>
+          <p class="feature-description">
+            Sistema de roles y permisos para gestionar equipos de trabajo
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3 class="feature-title">Responsive</h3>
+          <p class="feature-description">
+            Accede desde cualquier dispositivo: PC, tablet o móvil
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Seguro</h3>
+          <p class="feature-description">
+            Autenticación robusta con control de sesiones y permisos
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Rápido y Ligero</h3>
+          <p class="feature-description">
+            Sin dependencias externas, 100% vanilla JavaScript
+          </p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <main id="printer-grid">
-        <section class="printer-section" id="section-printing">
-            <h2 class="section-title">🖨️ IMPRIMIENDO</h2>
-            <div class="section-grid" data-section="printing"></div>
-        </section>
-
-        <section class="printer-section" id="section-idle">
-            <h2 class="section-title">✅ DISPONIBLES</h2>
-            <div class="section-grid" data-section="idle"></div>
-        </section>
-
-        <section class="printer-section" id="section-offline">
-            <h2 class="section-title">📡 DESCONECTADAS</h2>
-            <div class="section-grid" data-section="offline"></div>
-        </section>
-    </main>
-
-    <audio id="completion-sound" preload="auto">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTcIGWi77eedTRAMUKfj8LZjHAY4ktfyzHksBSR3x/DdkEAKFF606+uoVRQKRp/g8r5sIQUrgs7y2Ik3CBlou+3nnU0QDFCn4/C2YxwGOJLX8sx5LAUkd8fw3ZBAC" type="audio/wav">
-    </audio>
-
-    <!-- Cargar módulos JS -->
-    <script type="module" src="js/main.js"></script>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>PrinterHub v1.0.0 - Sistema de gestión de impresoras 3D</p>
+    <p style="margin-top: var(--spacing-sm);">
+      Desarrollado con ❤️ para la comunidad de impresión 3D
+    </p>
+  </footer>
 </body>
 </html>
