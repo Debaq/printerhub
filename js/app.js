@@ -140,48 +140,59 @@ class App {
   /**
    * Handle login
    */
-  async handleLogin(form) {
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    
-    // Deshabilitar botón
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Iniciando sesión...';
+  /**
+ * Handle login
+ */
+async handleLogin(form) {
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalText = submitBtn.textContent;
+  
+  // Deshabilitar botón
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Iniciando sesión...';
 
-    try {
-      const username = form.querySelector('#username').value;
-      const password = form.querySelector('#password').value;
-      const rememberMe = form.querySelector('#remember-me')?.checked || false;
+  try {
+    const username = form.querySelector('#username').value;
+    const password = form.querySelector('#password').value;
+    const rememberMe = form.querySelector('#remember-me')?.checked || false;
 
-      // Validar
-      const errors = Auth.validateLoginForm(username, password);
-      if (errors.length > 0) {
-        Notifications.error(errors[0]);
+    // Validar
+    const errors = Auth.validateLoginForm(username, password);
+    if (errors.length > 0) {
+      Notifications.error(errors[0]);
+      return;
+    }
+
+    // Login
+    const result = await Auth.login(username, password, rememberMe);
+
+    if (result.success) {
+      Notifications.success(`¡Bienvenido, ${result.user.username}!`);
+      
+      // Pequeño delay para mostrar la notificación
+      await Utils.sleep(500);
+      
+      // CAMBIO: Asegurarse que los datos estén guardados antes de redirigir
+      // Verificar que realmente se guardó
+      if (!Auth.isLoggedIn()) {
+        console.error('Error: datos no se guardaron en localStorage');
+        Notifications.error('Error al guardar la sesión');
         return;
       }
-
-      // Login
-      const result = await Auth.login(username, password, rememberMe);
-
-      if (result.success) {
-        Notifications.success(`¡Bienvenido, ${result.user.username}!`);
-        
-        // Pequeño delay para mostrar la notificación
-        await Utils.sleep(500);
-        
-        // Redirigir según rol
-        Auth.redirectByRole();
-      } else {
-        Notifications.error(result.error);
-      }
-    } catch (error) {
-      Notifications.error('Error al iniciar sesión');
-      Utils.error('Login error:', error);
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
+      
+      // Redirigir según rol
+      Auth.redirectByRole();
+    } else {
+      Notifications.error(result.error);
     }
+  } catch (error) {
+    Notifications.error('Error al iniciar sesión');
+    Utils.error('Login error:', error);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
   }
+}
 
   /**
    * Handle register
